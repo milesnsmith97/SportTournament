@@ -6,42 +6,55 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.ws.rs.FormParam;
+import javax.xml.bind.annotation.XmlRootElement;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
-@Component
+
+//@Component
+
+
 @Scope("prototype")
 @Entity
 @Table(name="JPA_PLAYER")
+@XmlRootElement
 public class Player implements Serializable {
 
 	@Value("-1")
 	private int playerno;
 	
+	@Value("Default Player")
+	@FormParam("name")
 	private String name;
 	
 	@Value("100.0")
+	@FormParam("salary")
 	private double salary;
 	
+	
+	// Each player belongs to a team
+	private Teams currentTeam;
+	
+	@ManyToOne
+	@JoinColumn(name="FK_Team_id")
+	public Teams getCurrentTeam() {
+		return currentTeam;
+	}
+
+	public void setCurrentTeam(Teams currentTeam) {
+		this.currentTeam = currentTeam;
+	}
+
 	public Player() {
 		System.out.println("Player Created");
 	}
 	
-	// Each player belongs to a team
-//	private Teams currentTeam;
-	
-	
-//	public Teams getCurrentTeam() {
-//		return currentTeam;
-//	}
-//
-//	public void setCurrentTeam(Teams currentTeam) {
-//		this.currentTeam = currentTeam;
-//	}
-
 
 	@Id
 	@Column(name="player_number")

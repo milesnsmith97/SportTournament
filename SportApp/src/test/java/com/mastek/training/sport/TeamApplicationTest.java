@@ -19,17 +19,17 @@ public class TeamApplicationTest {
 	@Autowired
 	TeamsService teamService;
 	
-	@Autowired
-	Teams team;
+	//@Autowired
+	//Teams team;
 	
-	@Test
-	public void addTeamUsingService() {
-		team.setTeamno(1);
-		team.setName("Default Team Name");
-		team.setNationality("Default Nationality");
-		team = teamService.registerOrUpdateTeam(team);
-		assertNotNull(team);
-	}
+//	@Test
+//	public void addTeamUsingService() {
+//		team.setTeamno(1);
+//		team.setName("Default Team Name");
+//		team.setNationality("Default Nationality");
+//		team = teamService.registerOrUpdateTeam(team);
+//		assertNotNull(team);
+//	}
 	
 	@Test
 	public void findByTeamnoUsingService() {
